@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#850d28" />
+  <meta name="description" content="SangUrgence : anticiper les besoins en sang, mobiliser les donneurs volontaires et organiser des collectes ciblées, au bon endroit et au bon moment." />
+  <meta property="og:title" content="SangUrgence — Agir avant la pénurie." />
+  <meta property="og:description" content="Une nouvelle approche de la solidarité sanguine : anticiper les besoins et rapprocher les donneurs des points de collecte." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22%23850d28%22%2F%3E%3Cpath%20d%3D%22M32%208C25%2020%2017%2029%2017%2040a15%2015%200%200%200%2030%200C47%2029%2039%2020%2032%208Z%22%20fill%3D%22%23fff%22%2F%3E%3Cpath%20d%3D%22M22%2040h7l3-6%205%2012%203-6h3%22%20fill%3D%22none%22%20stroke%3D%22%23850d28%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%223%22%2F%3E%3C%2Fsvg%3E%0A" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+:root {
+  --wine:#850d28; --wine-dark:#57091b; --wine-deep:#400716; --red:#b51038; --rose:#eec6c8;
+  --cream:#f8f7ec; --cream-deep:#eeeede; --blush:#faeeee; --ink:#242326;
+  --muted:#69676b; --outline:rgba(66,35,44,.13); --white:#fff;
+  --radius:22px; --shadow:0 23px 65px rgba(49,24,30,.11);
+  --font:'Manrope','DM Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;font-family:var(--font);font-size:15px;line-height:1.65;color:var(--ink);background:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+svg{display:block}
+.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.svg-symbols{position:absolute;width:0;height:0;overflow:hidden}
+.container{width:min(1180px,calc(100% - 80px));margin-inline:auto}
+.section{padding:122px 0}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3{letter-spacing:-.055em;line-height:1.12}
+h2{font-size:clamp(40px,4.3vw,64px);font-weight:800}
+h2 span{color:var(--wine)}
+p{line-height:1.83}
+::selection{color:#fff;background:var(--wine)}
+:focus-visible{outline:3px solid #f6b94a;outline-offset:4px}
+.skip-link{position:fixed;left:16px;top:-70px;z-index:1000;background:#fff;color:#111;padding:10px 16px;border-radius:8px}
+.skip-link:focus{top:16px}
+.topline{min-height:35px;display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 14px;background:var(--wine);color:#ffeff1;font-size:9.5px;font-weight:800;letter-spacing:.22em;text-align:center}
+.topline-dot{width:6px;height:6px;border-radius:50%;background:#f9b5bc;box-shadow:0 0 0 4px #ffffff14;flex-shrink:0}
+.site-header{position:sticky;top:0;z-index:60;background:rgba(248,247,236,.91);border-bottom:1px solid #dedbd0ad;backdrop-filter:blur(20px);transition:box-shadow .3s,background .3s}
+.site-header.scrolled{box-shadow:0 12px 36px rgba(44,31,35,.07);background:rgba(248,247,236,.97)}
+.nav-wrap{height:80px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-size:23px;font-weight:800;letter-spacing:-.065em;white-space:nowrap;color:#2c2227}
+.brand-accent{color:var(--wine)}
+.brand-mark{width:38px;height:38px;border-radius:12px;background:var(--wine);display:grid;place-items:center;color:#fff;transform:rotate(-8deg);box-shadow:0 8px 21px #850d282d}
+.brand-mark svg{width:30px;height:30px;transform:rotate(8deg)}
+.nav-links{display:flex;align-items:center;justify-content:center;gap:28px;margin-left:auto}
+.nav-links a{font-size:12px;font-weight:800;color:#5a5355;transition:color .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.current{color:var(--wine)}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:13px;padding:16px 22px;min-height:50px;border-radius:11px;font-weight:800;font-size:12px;border:1px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.button:hover{transform:translateY(-3px)}
+.button .icon{height:17px;width:17px}
+.button-dark{background:var(--wine);color:white;box-shadow:0 9px 22px #850d2821}
+.button-dark:hover,.button-primary:hover{background:#aa0b30;box-shadow:0 14px 27px #850d282b}
+.button-primary{background:var(--wine);color:#fff;box-shadow:0 14px 25px #850d282e}
+.button-white{background:#fff;color:var(--wine-dark);padding:18px 24px}
+.button-white:hover{background:#fbebed}
+.menu-toggle{display:none;border:1px solid var(--outline);background:#fff8;color:var(--wine);width:44px;height:44px;border-radius:12px;align-items:center;justify-content:center}
+
+/* HERO */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(circle at 70% 48%,#f4e9e1 0,transparent 38%),linear-gradient(115deg,#f9f8ee 0%,#f6f5eb 64%,#f4e6e6 100%)}
+.hero-grain{position:absolute;inset:0;z-index:-1;opacity:.38;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E")}
+.hero-grid{min-height:670px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:30px;padding-top:65px;padding-bottom:52px}
+.hero-copy{position:relative;z-index:3;padding-top:6px}
+.eyebrow,.section-tag{font-weight:800;letter-spacing:.20em;color:var(--wine);font-size:11px;display:inline-flex;align-items:center;gap:12px}
+.eyebrow-line{width:27px;height:2px;background:var(--wine)}
+.hero h1{font-size:clamp(54px,5.7vw,83px);line-height:1.06;letter-spacing:-.085em;font-weight:800;margin:28px 0 24px;max-width:700px}
+.hero h1 span{color:var(--wine)}
+.hero-lead{max-width:560px;color:#605a5a;font-size:16px;line-height:1.9;margin-bottom:31px}
+.hero-lead strong{color:var(--wine);font-weight:800}
+.hero-actions{display:flex;align-items:center;gap:27px;flex-wrap:wrap}
+.text-link{display:inline-flex;align-items:center;gap:9px;color:#4d333d;border-bottom:1px solid #9b8c90;padding-bottom:5px;font-size:12px;font-weight:800;transition:gap .2s,color .2s}
+.text-link .icon{width:17px;height:17px}
+.text-link:hover{gap:16px;color:var(--wine)}
+.hero-proof{display:flex;align-items:center;gap:16px;margin-top:60px;font-size:11px;color:#787075;line-height:1.6}
+.hero-proof strong{font-size:12px;color:#332d30}
+.proof-glyphs{display:flex;align-items:center;padding-left:7px}
+.proof-glyphs span{margin-left:-7px;display:grid;place-items:center;width:37px;height:37px;border-radius:50%;background:var(--white);color:var(--wine);border:2px solid var(--cream);box-shadow:0 3px 11px #850d2821}
+.proof-glyphs .icon{width:17px;height:17px}
+.hero-bottom-line{display:flex;justify-content:space-between;align-items:center;padding:0 0 27px;color:#a09998;font-weight:800;font-size:10px;letter-spacing:.15em}
+.hero-bottom-line a{display:flex;gap:12px;align-items:center;color:#5a4d50;letter-spacing:.02em}
+.hero-bottom-line a span{font-size:18px}
+.hero-art{position:relative;height:550px;isolation:isolate;display:flex;align-items:center;justify-content:center}
+.art-halo{position:absolute;border-radius:50%;pointer-events:none}
+.art-halo-1{width:560px;height:560px;right:-130px;top:3px;background:linear-gradient(145deg,#8e0928,#65081d);box-shadow:inset 25px 10px 70px #ed89a216,0 48px 70px #850d2826;transform:rotate(8deg)}
+.art-halo-2{width:390px;height:390px;right:-49px;top:85px;border:1px solid #ffffff2b;box-shadow:0 0 0 65px #ffffff07,0 0 0 124px #ffffff06}
+.hero-orbit{position:absolute;border-radius:50%;display:grid;place-items:center;z-index:4}
+.orbit-left{top:39px;left:35px;color:#fff;background:#cb5165;width:55px;height:55px;transform:rotate(18deg);box-shadow:0 16px 24px #46041636}
+.hero-orbit .icon{width:23px;height:23px}
+.visual-dashboard{position:relative;z-index:2;width:430px;max-width:90%;border:1px solid #fff;background:#fffffff7;border-radius:22px;box-shadow:0 33px 65px #2806114a;overflow:hidden;transform:rotate(-4deg) translate(-2px,6px);padding:22px 20px 18px}
+.dashboard-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:23px;border-bottom:1px solid #f0ebed;font-size:11px}
+.db-brand{font-weight:800;color:#2d1e24;display:flex;align-items:center;gap:6px}
+.db-muted{font-size:10px;color:#a1a0a2;font-weight:500}
+.tiny-drop{width:12px;height:16px;display:inline-block;background:var(--red);border-radius:80% 0 55% 55%;transform:rotate(-35deg)}
+.db-dots{display:flex;gap:4px}.db-dots i{width:5px;height:5px;border-radius:50%;background:#e7dbdf}
+.dash-label{margin:22px 0 15px;color:#9a858c;font-weight:800;font-size:9px;letter-spacing:.14em}
+.dash-stage{display:flex;gap:12px;align-items:center;border-radius:13px;padding:14px 13px;background:#faf8f6;border:1px solid #f6f1ef}
+.stage-icon{height:37px;width:37px;display:grid;place-items:center;flex-shrink:0;color:var(--wine);background:#f4e4e7;border-radius:10px}
+.stage-icon .icon{height:20px;width:20px}
+.dash-stage>div{min-width:0;flex:1}.dash-stage b,.dash-stage small{display:block;line-height:1.45}.dash-stage b{font-size:12px;letter-spacing:-.01em}.dash-stage small{font-size:10px;color:#847e81;margin-top:3px}
+.stage-highlight{background:var(--wine);border-color:var(--wine);color:#fff;box-shadow:0 12px 20px #850d2824}.stage-highlight small{color:#fff9!important}.stage-highlight .stage-icon{background:#ffffff29;color:#fff}.stage-highlight .stage-complete{color:#fff}
+.stage-complete{color:#2b8b65}.stage-complete .icon{width:18px;height:18px;stroke-width:3}
+.stage-connector{height:19px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding-left:30px;justify-content:center}.stage-connector i{height:3px;width:3px;border-radius:50%;background:#dec5cc}
+.dash-footer{margin-top:16px;border-top:1px solid #f0ebed;padding:16px 4px 0;display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;color:#81757b}.dash-footer .icon{width:15px;height:15px;margin-left:auto;color:var(--wine)}
+.dot-live{background:#d63b59;width:7px;height:7px;border-radius:50%;box-shadow:0 0 0 4px #f6dce3}
+.floating-card{position:absolute;z-index:4;display:flex;align-items:center;gap:10px;padding:13px 15px;min-width:186px;background:#fff;box-shadow:0 18px 33px #36091334;border:1px solid #faeff0;border-radius:14px;animation:float 7s ease-in-out infinite}
+.floating-card b,.floating-card small{display:block;line-height:1.35}.floating-card b{font-size:11px;white-space:nowrap}.floating-card small{font-size:9px;margin-top:5px;color:#7f7276}
+.float-ico{height:36px;width:36px;border-radius:10px;background:#f9e9ed;color:var(--wine);display:grid;place-items:center}.float-ico .icon{width:18px;height:18px}
+.float-ico-light{background:#f2f4e9;color:#55764d}
+.float-top{top:64px;right:-7px;transform:rotate(4deg);animation-delay:-3s}
+.float-bottom{bottom:50px;left:-33px;min-width:268px;transform:rotate(4deg)}
+.check-mini{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:white;background:#319769;margin-left:auto}.check-mini .icon{height:13px;width:13px}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -9px}}
+.marquee{height:75px;overflow:hidden;background:var(--wine-dark);color:#ffe2e5;display:flex;align-items:center}
+.marquee-track{display:flex;align-items:center;gap:45px;min-width:max-content;animation:marquee 40s linear infinite}.marquee-track span{font-size:13px;font-weight:800;letter-spacing:.24em}.marquee-track i{color:#e28195;font-size:15px;font-style:normal}
+@keyframes marquee{to{transform:translateX(-50%)}}
+/* Vision */
+.vision-section{background:var(--wine);color:white;position:relative;overflow:hidden}
+.vision-section:before{content:"";position:absolute;width:640px;height:640px;left:-250px;bottom:-450px;border-radius:50%;border:110px solid #ffffff08;pointer-events:none}
+.vision-layout{display:grid;grid-template-columns:1fr 1fr;gap:85px;align-items:center}
+.tag-light{color:#f2b7c3}
+.vision-left h2{font-size:clamp(44px,4.6vw,68px);margin:26px 0 29px;max-width:580px}.vision-left em,.donor-copy em,.impact-heading em,.contact-copy em{font-style:normal;color:#edacbb}
+.vision-left p{color:#f6dce2;font-size:15px;max-width:480px}.vision-left .vision-bold{font-weight:800;color:#fff;font-size:17px;margin:29px 0 28px}
+.light-link{display:inline-flex;align-items:center;gap:12px;color:#fff;border-bottom:1px solid #ffffff8a;padding-bottom:7px;font-weight:800;font-size:12px}.light-link .icon{width:17px;height:17px;transition:transform .2s}.light-link:hover .icon{transform:translateX(5px)}
+.vision-right{display:flex;flex-direction:column;gap:14px}.challenge-card{border:1px solid #ffffff25;padding:25px;display:flex;gap:18px;align-items:center;background:#ffffff0c;border-radius:18px;transition:background .2s,transform .2s}.challenge-card:hover{background:#ffffff17;transform:translateX(5px)}
+.challenge-number{font-size:13px;color:#f1a7b8;font-weight:800;align-self:flex-start}.challenge-card>div{flex:1}.challenge-card h3{font-size:18px;letter-spacing:-.035em;margin:0 0 6px}.challenge-card p{font-size:12px;line-height:1.7;color:#e9c2ca;margin:0}.challenge-card>.icon{width:26px;height:26px;color:#dfa6b2}
+/* Solution */
+.solution-section{background:var(--cream)}
+.section-head{max-width:760px;margin-bottom:50px}.section-head h2{margin:17px 0}.section-head p{font-size:15px;color:var(--muted);max-width:660px}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.service-card{min-height:410px;position:relative;overflow:hidden;background:#fff;border-radius:22px;padding:29px;display:flex;flex-direction:column;border:1px solid #e9e5de;box-shadow:0 15px 33px #4e293008;transition:transform .3s,box-shadow .3s}
+.service-card:hover,.service-card:focus-visible{transform:translateY(-9px);box-shadow:0 28px 48px #4e29301c}
+.service-top{display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:10px;letter-spacing:.11em;color:#91838a}
+.service-top .icon{height:17px;width:17px}
+.service-icon{height:68px;width:68px;border-radius:20px;background:#f8e8ea;color:var(--wine);display:grid;place-items:center;margin:47px 0 20px}
+.service-icon .icon{width:31px;height:31px}
+.service-card h3{font-size:29px;margin:0 0 14px;letter-spacing:-.06em}
+.service-card p{font-size:13px;color:#6e696b;margin:0 0 25px;line-height:1.85}
+.service-bottom{font-size:11px;font-weight:800;color:var(--wine);margin-top:auto;border-top:1px solid #eee5e6;padding-top:20px}
+.feature-card{background:var(--wine);border-color:var(--wine);color:#fff}.feature-card .service-top{color:#eeb9c4}.feature-card .service-icon{background:#ffffff23;color:#fff}.feature-card p{color:#f1c9d1}.feature-card .service-bottom{color:#fff;border-color:#ffffff35}
+.solution-foot{display:flex;align-items:center;gap:14px;margin-top:33px;color:#5f5054;font-size:13px}.solution-foot p{margin:0}.solution-foot strong{color:var(--wine)}.solution-foot-icon{height:36px;width:36px;border-radius:50%;display:grid;place-items:center;background:#ecd6d9;color:var(--wine)}.solution-foot-icon .icon{height:17px;width:17px}
+/* HOW */
+.how-section{background:#eeeede}
+.how-layout{display:grid;grid-template-columns:1fr 1fr;gap:85px;align-items:center}
+.how-intro h2{margin:20px 0 20px}.how-intro p{color:#74706e;max-width:470px;font-size:14px;margin-bottom:35px}
+.step-list{display:flex;flex-direction:column;gap:11px}.step-button{width:100%;text-align:left;border:1px solid transparent;background:transparent;display:flex;align-items:center;gap:17px;padding:15px 19px;border-radius:14px;color:#685f62;transition:background .2s,border .2s,transform .2s}
+.step-button:hover{transform:translateX(4px)}.step-button.active{background:#fff;border-color:#e9d6d8;box-shadow:0 12px 28px #4d22250c}
+.step-button>span{align-self:flex-start;background:#dcd8d4;display:grid;place-items:center;width:37px;height:37px;border-radius:11px;font-size:12px;font-weight:800;flex-shrink:0;color:#745c61}
+.step-button.active>span{background:var(--wine);color:white}
+.step-button>div{flex:1}.step-button b,.step-button small{display:block}.step-button b{font-size:14px;color:#383034;margin-bottom:4px}.step-button small{font-size:11px;color:#8a8383;line-height:1.65}.step-button>.icon{height:17px;width:17px;opacity:0;transform:translateX(-5px);transition:.2s}.step-button.active>.icon{opacity:1;transform:translateX(0);color:var(--wine)}
+.how-preview{background:#fff;border:1px solid #ede2e3;box-shadow:var(--shadow);border-radius:24px;overflow:hidden;min-height:530px;display:flex;flex-direction:column}
+.preview-label{padding:24px 26px;display:flex;align-items:center;gap:9px;font-size:10px;font-weight:800;letter-spacing:.13em;color:#877b7b}
+.preview-dot{background:var(--red);width:7px;height:7px;border-radius:50%}.preview-counter{margin-left:auto;font-size:11px;letter-spacing:0;color:var(--wine)}
+.preview-visual{margin:0 24px;border-radius:16px;flex:0 0 235px;background:radial-gradient(circle at 68% 35%,#c24b64 0,#850d28 65%,#710c26 100%);display:grid;place-items:center;position:relative;overflow:hidden}
+.preview-illustration{display:grid;place-items:center;position:relative;width:130px;height:130px;background:#ffffff1f;box-shadow:0 0 0 22px #ffffff11,0 0 0 66px #ffffff0b;border:1px solid #ffffff55;border-radius:50%;color:#fff;z-index:2}
+.preview-illustration .icon{width:62px;height:62px;stroke-width:1.25}.preview-illustration-glow{position:absolute;inset:14px;border:1px solid #ffffff32;border-radius:50%}
+.preview-arc{position:absolute;border:1px solid #ffffff44;border-radius:50%;width:360px;height:360px;top:-62px;left:-55px}.preview-arc.two{width:200px;height:200px;left:auto;right:-52px;top:65px}
+.preview-copy{padding:25px 30px 10px}.preview-small{color:var(--wine);font-size:10px;font-weight:800;letter-spacing:.13em;margin-bottom:9px}.preview-copy h3{font-size:27px;margin:0 0 10px}.preview-copy p{font-size:13px;color:#7b7274;margin-bottom:0}
+.preview-pagination{display:flex;gap:7px;margin:19px 30px 12px}.preview-pagination span{width:8px;height:8px;border-radius:8px;background:#e9d8dc;transition:.25s}.preview-pagination span.on{width:30px;background:var(--wine)}
+.preview-disclaimer{font-size:10px;color:#9c9294;padding:0 30px 25px}
+/* DONOR */
+.donor-section{background:var(--wine-dark);color:#fff;overflow:hidden}
+.donor-layout{display:grid;grid-template-columns:.95fr 1.05fr;gap:85px;align-items:center}
+.donor-copy h2{font-size:clamp(45px,4.8vw,68px);margin:25px 0}.donor-copy p{color:#eed2d8;max-width:490px;font-size:14px;margin-bottom:27px}
+.donor-list{list-style:none;padding:0;margin:0 0 25px;display:flex;flex-direction:column;gap:14px}.donor-list li{display:flex;align-items:flex-start;gap:11px;font-size:13px;font-weight:700;color:#fff5f7}.donor-list .icon{width:18px;height:18px;color:#f6bdca;margin-top:2px}
+.donor-note{color:#eabdc6;font-size:11px;line-height:1.75;border-top:1px solid #ffffff26;padding-top:18px;max-width:470px}
+.phone-composition{position:relative;min-height:635px;display:flex;align-items:center;justify-content:center;isolation:isolate}
+.phone-decor-ring{position:absolute;border-radius:50%;border:1px solid #ffffff22}.ring-one{height:540px;width:540px;box-shadow:0 0 0 80px #ffffff07}.ring-two{height:410px;width:410px;border-style:dashed}
+.phone{z-index:2;position:relative;background:#faf8f7;color:#222;width:297px;height:574px;border:10px solid #171318;border-radius:43px;overflow:hidden;box-shadow:0 35px 75px #17070e92,0 0 0 2px #6a5b60;transform:rotate(7deg)}
+.phone-top{display:flex;justify-content:space-between;align-items:center;padding:13px 18px 13px 22px;font-size:11px;font-weight:800}.phone-signal{letter-spacing:-.1em}.phone-notch{position:absolute;z-index:4;top:0;left:50%;transform:translateX(-50%);width:90px;height:22px;background:#171318;border-radius:0 0 15px 15px}
+.phone-header{display:flex;align-items:center;gap:10px;border-bottom:1px solid #e6e3e1;padding:12px 14px;background:#fff}.phone-header>div:nth-of-type(2){flex:1}.phone-header b,.phone-header small{display:block}.phone-header b{font-size:12px}.phone-header small{font-size:9px;color:#888}.back-chevron{font-size:27px;font-weight:300;line-height:1;color:var(--wine)}.phone-logo{display:grid;place-items:center;color:white;background:var(--wine);width:35px;height:35px;border-radius:50%}.phone-logo .icon{height:19px;width:19px}.phone-ellipsis{letter-spacing:2px;color:#7b7777;font-size:10px}
+.phone-content{padding:20px 15px}.message-time{text-align:center;font-size:9px;color:#9e9b9d;margin-bottom:16px;letter-spacing:.09em;font-weight:800}.sms-bubble{position:relative;margin-right:20px;border-radius:17px 17px 17px 5px;background:#ebe8e7;padding:15px 13px;color:#343032}.sms-bubble b{font-size:11px}.sms-bubble p{font-size:10px;line-height:1.8;margin:9px 0 0}
+.phone-location{display:flex;align-items:center;gap:8px;padding:12px 10px;background:#fff;border:1px solid #efe7e7;border-radius:11px;margin:17px 0 12px}.phone-location>div{flex:1}.phone-location b,.phone-location small{display:block;line-height:1.5}.phone-location b{font-size:9.5px}.phone-location small{font-size:8px;color:#999}.phone-location .icon{width:13px;height:13px;color:var(--wine)}.phone-location-icon{width:25px;height:25px;background:#fae7e9;border-radius:7px;display:grid;place-items:center}.phone-choice{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--wine);color:#fff;font-size:10px;font-weight:800;border-radius:10px;padding:11px}.phone-choice .icon{height:15px;width:15px}.phone-footnote{text-align:center;font-size:9px;color:#b6aaaa;margin-top:15px}.phone-home{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:#1f1c1e;border-radius:5px;width:90px;height:4px}
+.phone-tag{z-index:4;position:absolute;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;background:#fff;color:var(--wine-dark);padding:14px 16px;border-radius:11px;box-shadow:0 12px 30px #11050b77;white-space:nowrap}.phone-tag .icon{width:18px;height:18px;color:var(--wine)}.phone-tag-a{top:100px;left:0;transform:rotate(-7deg)}.phone-tag-b{right:-7px;bottom:98px;transform:rotate(-4deg)}
+/* campaigns */
+.campaigns-section{background:#fffdf6}
+.campaigns-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:85px;align-items:center}
+.campaigns-copy h2{margin:18px 0 23px}.campaigns-copy>p{font-size:14px;color:#6f6969}
+.campaign-benefits{display:flex;flex-direction:column;gap:23px;margin:30px 0}.campaign-benefits>div{display:flex;align-items:flex-start;gap:14px}.campaign-benefits>div>span{height:43px;width:43px;background:#f9e9ec;color:var(--wine);display:grid;place-items:center;border-radius:12px;flex-shrink:0}.campaign-benefits .icon{height:20px;width:20px}.campaign-benefits b{font-size:13px}.campaign-benefits p{font-size:12px;color:#807477;margin:2px 0 0}.text-link-dark{color:var(--wine)}
+.campaigns-visual{position:relative}
+.map-card{background:white;border:1px solid #ece6e3;border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}.map-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:23px}.map-head b,.map-head small{display:block}.map-head b{font-size:13px}.map-head small{font-size:10px;color:#978b8d;margin-top:3px}.map-status{white-space:nowrap;font-size:9px;color:#6b6b64;background:#f6f3e8;border-radius:20px;padding:7px 10px}.map-status span{display:inline-block;height:6px;width:6px;border-radius:50%;background:#caa86c;margin-right:3px}
+.map-canvas{position:relative;height:355px;margin:0 17px;border-radius:16px;overflow:hidden;background:linear-gradient(20deg,#e7e6d9 0%,#f4efe7 100%)}.map-canvas:before,.map-canvas:after{content:"";position:absolute;inset:-20%;background-image:linear-gradient(0deg,transparent 48%,#ffffff75 48%,#ffffff75 50%,transparent 50%),linear-gradient(90deg,transparent 48%,#ffffff75 48%,#ffffff75 50%,transparent 50%);background-size:120px 80px;transform:rotate(-21deg)}.map-canvas:after{transform:rotate(25deg);background-size:150px 100px;opacity:.45}
+.map-street{position:absolute;z-index:1;border-radius:50px;background:#fff;box-shadow:0 0 0 2px #ded9cf;transform-origin:center}.street-a{height:18px;width:600px;top:30%;left:-10%;transform:rotate(-28deg)}.street-b{height:22px;width:540px;top:71%;left:-12%;transform:rotate(18deg)}.street-c{height:17px;width:480px;top:50%;left:10%;transform:rotate(71deg)}.street-d{height:13px;width:480px;top:25%;left:18%;transform:rotate(-61deg)}
+.map-lake{position:absolute;z-index:2;top:-15%;right:-13%;width:180px;height:275px;transform:rotate(28deg);border-radius:46%;background:#c5d9d3;opacity:.85}.map-green{position:absolute;z-index:2;background:#d9e0ca;border-radius:44%}.green-a{width:170px;height:105px;bottom:-30px;left:-45px;transform:rotate(-18deg)}.green-b{width:90px;height:120px;right:18%;bottom:1%;transform:rotate(33deg)}
+.zone-radius{z-index:3;position:absolute;width:160px;height:160px;border:2px dashed #a91c413c;border-radius:50%;background:#b0113a13;top:24%;left:24%;transition:all .5s;pointer-events:none}.map-canvas[data-zone="entreprise"] .zone-radius{left:60%;top:45%;width:145px;height:145px}.map-canvas[data-zone="quartier"] .zone-radius{left:6%;top:61%;height:150px;width:150px}
+.map-pin{position:absolute;z-index:5;width:47px;height:47px;display:grid;place-items:center;border:3px solid white;border-radius:50%;background:var(--wine);color:#fff;box-shadow:0 6px 17px #3b1c2066;transition:transform .2s,background .2s}.map-pin.active{transform:scale(1.18);background:#cf254f;box-shadow:0 0 0 9px #c9234a25,0 9px 25px #3b1c2073}.map-pin .icon{height:24px;width:24px}.p-campus{top:37%;left:33%}.p-company{top:58%;left:73%}.p-community{top:73%;left:12%}.map-name{position:absolute;z-index:4;border-radius:7px;padding:5px 8px;box-shadow:0 4px 12px #0000000e;background:#fff;font-size:10px;color:#484141;font-weight:800;white-space:nowrap}.n-campus{top:29%;left:29%}.n-company{top:75%;left:64%}.n-community{top:91%;left:7%}
+.map-bottom{display:flex;align-items:center;gap:14px;padding:21px 23px 25px}.zone-icon{display:grid;place-items:center;width:45px;height:45px;color:var(--wine);background:#f9e8eb;border-radius:12px}.zone-icon .icon{width:21px;height:21px}.zone-icon .icon:first-child{display:none}.map-bottom>div{display:flex;flex-direction:column}.map-bottom small{font-size:9px;letter-spacing:.12em;color:#9b7e87;font-weight:800}.map-bottom b{font-size:15px;letter-spacing:-.03em}.map-bottom span:not(.zone-icon){font-size:11px;color:#898082}
+.map-float{position:absolute;bottom:-15px;right:-20px;display:flex;align-items:center;gap:8px;background:var(--wine);border-radius:10px;color:#fff;box-shadow:0 12px 26px #850d2829;padding:14px 16px;font-size:11px;font-weight:800}.map-float .icon{height:19px;width:19px}
+/* impact */
+.impact-section{background:var(--cream)}.impact-wrap{border-radius:27px;background:var(--wine);padding:67px 65px;color:#fff;position:relative;overflow:hidden;display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;isolation:isolate}
+.impact-wrap:before{content:"";position:absolute;width:680px;height:680px;border:1px solid #ffffff24;border-radius:50%;right:-330px;bottom:-330px;box-shadow:0 0 0 90px #ffffff08,0 0 0 185px #ffffff06;z-index:-1}
+.impact-heading h2{font-size:clamp(42px,4vw,58px);margin:19px 0}.impact-heading p{font-size:14px;color:#f1ced5}
+.impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}.impact-item{border-bottom:1px solid #ffffff32;padding-bottom:15px}.impact-item .icon{color:#fcc8d2;height:27px;width:27px;margin-bottom:25px}.impact-item h3{font-size:17px;margin:0 0 7px;letter-spacing:-.03em}.impact-item p{font-size:12px;line-height:1.8;color:#ebc5ce;margin:0}
+/* faq */
+.faq-section{background:#fffdf8}.faq-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:100px;align-items:start}.faq-intro h2{font-size:clamp(40px,3.8vw,57px);margin:19px 0}.faq-intro p{font-size:14px;color:#85787c;margin-bottom:30px}
+.faq-items{border-top:1px solid #e3d9da}.faq-items details{border-bottom:1px solid #e3d9da;padding:0 0 0 2px}.faq-items summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:22px 0;font-size:14px;cursor:pointer;font-weight:800;letter-spacing:-.015em}.faq-items summary::-webkit-details-marker{display:none}.faq-items summary .icon{height:19px;width:19px;transition:transform .2s;flex-shrink:0;color:var(--wine)}.faq-items details[open] summary .icon{transform:rotate(180deg)}.faq-items details p{font-size:12px;line-height:1.92;color:#756e70;padding-right:32px;margin:-3px 0 22px}
+/* contact */
+.contact-section{background:#fffdf8;padding:0 0 80px}.contact-panel{position:relative;overflow:hidden;isolation:isolate;background:var(--wine-deep);border-radius:27px;min-height:408px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;padding:54px 70px;color:#fff}.contact-copy{z-index:2}.contact-copy h2{font-size:clamp(42px,4.5vw,65px);margin:19px 0}.contact-copy p{color:#eac9d0;font-size:14px;max-width:550px}.contact-actions{display:flex;align-items:center;gap:25px;flex-wrap:wrap;margin-top:28px}.contact-secondary{font-size:12px;text-decoration:underline;text-underline-offset:5px;color:#f8d9df;font-weight:800}.contact-illustration{height:100%;position:relative;display:grid;place-items:center}.contact-glow{position:absolute;right:-210px;top:-170px;width:650px;height:650px;background:radial-gradient(circle,#aa3154,#a1224400 67%);z-index:-1}.contact-heart-ring{position:absolute;border:1px solid #ffffff2e;border-radius:50%}.contact-heart-ring.r1{width:280px;height:280px}.contact-heart-ring.r2{width:410px;height:410px}.contact-heart-ring.r3{width:530px;height:530px}.heart-large{width:160px;height:160px;stroke-width:.8;color:#f7bcc9;filter:drop-shadow(0 0 30px #ed8daa41);transform:rotate(-9deg)}.contact-spark{position:absolute;color:#f0a9b8;font-size:32px}.spark1{left:22%;top:14%}.spark2{right:16%;bottom:16%}
+/* footer */
+.footer{background:#f3f1e8;padding:55px 0 22px}.footer-inner{display:flex;justify-content:space-between;gap:30px;align-items:center}.brand-footer{font-size:23px}.footer-inner p{color:#81777a;font-size:12px;margin:11px 0 0 48px}.footer-menu{display:flex;gap:26px;flex-wrap:wrap}.footer-menu a{font-size:11px;color:#5c5054;font-weight:800}.footer-menu a:hover{color:var(--wine)}.footer-bottom{border-top:1px solid #dfd7d4;margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;gap:20px;color:#958a8c;font-size:10px}
+/* reveal and a11y */
+.reveal{opacity:1;transform:none;transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.has-js .reveal{opacity:0;transform:translateY(28px)}.has-js .reveal.visible{opacity:1;transform:translateY(0)}.reveal.delay-1{transition-delay:.13s}.reveal.delay-2{transition-delay:.26s}
+@media (max-width:1130px){.container{width:min(1100px,calc(100% - 62px))}.nav-links{gap:17px}.nav-links a{font-size:11px}.nav-cta{padding-inline:15px;font-size:11px}.hero h1{font-size:clamp(53px,5.3vw,70px)}.visual-dashboard{width:395px}.art-halo-1{right:-160px}.float-bottom{left:-5px}.float-top{right:-5px}.vision-layout,.how-layout,.campaigns-layout,.donor-layout{gap:50px}.faq-layout{gap:55px}}
+@media (max-width:925px){.nav-links{position:absolute;top:80px;left:0;right:0;display:none;background:#f8f7ed;flex-direction:column;align-items:stretch;gap:0;padding:14px 31px 25px;box-shadow:0 18px 30px #3920271f}.nav-links.open{display:flex}.nav-links a{font-size:14px;padding:13px;border-bottom:1px solid #eae5e1}.nav-wrap{gap:15px}.nav-cta{margin-left:auto}.menu-toggle{display:flex}.hero-grid{grid-template-columns:1fr;min-height:auto;padding-top:83px;padding-bottom:50px}.hero-copy{max-width:760px}.hero h1{font-size:clamp(56px,8vw,82px)}.hero-art{height:555px;max-width:650px;width:100%;margin-inline:auto}.art-halo-1{right:0}.hero-proof{margin-top:43px}.vision-layout{grid-template-columns:1fr;gap:43px}.vision-left h2{max-width:740px}.vision-left p{max-width:690px}.vision-right{display:grid;grid-template-columns:repeat(3,1fr)}.challenge-card{flex-direction:column;align-items:flex-start}.challenge-card>.icon{display:none}.service-card{padding:22px;min-height:420px}.service-card h3{font-size:24px}.how-layout,.campaigns-layout{gap:40px}.impact-wrap{padding:50px 42px;gap:30px}.phone-tag-a{left:-17px}.phone-tag-b{right:-15px}}
+@media (max-width:700px){.section{padding:82px 0}.container{width:calc(100% - 36px)}.topline{min-height:30px;font-size:8px;letter-spacing:.11em}.nav-wrap{height:69px}.nav-links{top:69px}.brand{font-size:21px}.brand-mark{height:34px;width:34px}.nav-cta{display:none}.hero-grid{padding-top:52px;gap:15px}.hero h1{font-size:clamp(44px,9.1vw,62px);margin:22px 0 18px;letter-spacing:-.075em}.hero-lead{font-size:14px}.hero-actions{gap:20px}.hero-art{height:435px}.art-halo-1{height:390px;width:390px;right:-60px;top:15px}.art-halo-2{width:270px;height:270px;right:4px;top:75px;box-shadow:0 0 0 40px #ffffff07}.visual-dashboard{width:335px;max-width:82%;padding:14px 13px;transform:rotate(-4deg) translate(2px,7px)}.dashboard-top{padding-bottom:11px}.dash-label{margin:13px 0 10px;font-size:7px}.dash-stage{padding:10px;gap:9px}.stage-icon{height:30px;width:30px}.stage-icon .icon{height:16px;width:16px}.dash-stage b{font-size:10px}.dash-stage small{font-size:8px}.stage-complete .icon{height:14px;width:14px}.stage-connector{height:12px}.dash-footer{margin-top:9px;padding-top:11px;font-size:8px}.floating-card{padding:10px;min-width:unset;gap:7px}.floating-card b{font-size:9px}.floating-card small{font-size:7px}.float-ico{width:29px;height:29px}.float-top{top:18px;right:-1px}.float-bottom{bottom:22px;left:0;min-width:194px}.check-mini{height:18px;width:18px}.orbit-left{left:9px;top:16px;width:38px;height:38px}.hero-bottom-line{padding-bottom:20px;font-size:9px}.marquee{height:56px}.marquee-track{gap:25px}.marquee-track span{font-size:11px}.vision-left h2,.donor-copy h2{font-size:clamp(39px,9vw,55px)}.vision-right{grid-template-columns:1fr;gap:10px}.challenge-card{flex-direction:row;padding:18px}.challenge-card>.icon{display:block}.service-grid{grid-template-columns:1fr;gap:14px}.service-card{min-height:auto;padding:24px}.service-icon{margin:27px 0 16px}.service-card h3{font-size:30px}.service-card p{max-width:540px}.service-bottom{margin-top:16px}.solution-foot{align-items:start}.how-layout,.donor-layout,.campaigns-layout,.faq-layout{grid-template-columns:1fr;gap:40px}.how-preview{min-height:0}.how-intro p{max-width:620px}.preview-visual{min-height:215px}.donor-copy p{max-width:590px}.phone-composition{height:555px;min-height:0}.phone{transform:rotate(5deg) scale(.92)}.phone-tag-a{left:1%;top:62px}.phone-tag-b{right:0;bottom:49px}.campaigns-visual{order:2}.campaigns-copy{order:1}.map-float{right:0}.impact-wrap{grid-template-columns:1fr;padding:37px 28px;gap:33px}.impact-heading h2{font-size:clamp(39px,8.5vw,56px)}.impact-grid{gap:16px}.impact-item .icon{margin-bottom:12px}.contact-section{padding-bottom:30px}.contact-panel{grid-template-columns:1fr;padding:44px 28px;min-height:0}.contact-copy h2{font-size:clamp(39px,8.5vw,60px)}.contact-illustration{display:none}.footer-inner{flex-direction:column;align-items:flex-start;gap:35px}.footer-bottom{flex-direction:column;gap:7px}.faq-intro p{max-width:540px}}
+@media (max-width:400px){.hero h1{font-size:42px}.hero-art{height:380px}.art-halo-1{width:355px;height:355px;right:-75px;top:5px}.float-bottom{left:-11px}.float-top{right:-11px}.visual-dashboard{max-width:83%}.hero-actions .button{width:100%}.hero-proof{margin-top:28px}.phone-composition{height:510px}.phone{transform:rotate(5deg) scale(.84)}.phone-tag-a{left:-5%;top:47px}.phone-tag-b{right:-4%;bottom:40px}.map-name{font-size:8px}.map-head{padding:19px 16px}.map-head b{font-size:11px}.map-status{font-size:8px}.map-canvas{height:280px}.map-float{font-size:10px}.impact-grid{grid-template-columns:1fr}.contact-actions .button{width:100%}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* ===============================================================
+   SangUrgence — Édition professionnelle V2
+   Direction : HealthTech éditorial, lisible, sobre et accessible.
+   =============================================================== */
+:root{--wine:#890D2B;--wine-dark:#600A21;--cream:#F9F8F1;--cream-deep:#EEEFE5;--ink:#201F24;--muted:#655E64}
+body{background:var(--cream)}
+.container{width:min(1216px,calc(100% - 96px))}
+.section{padding:116px 0}
+.topline{font-size:10px;letter-spacing:.15em;min-height:33px;background:#65091E}
+.topline span[aria-hidden]{color:#EFADBC;margin-inline:3px}
+.site-header{background:rgba(249,248,241,.94)}
+.site-header.scrolled{background:rgba(249,248,241,.98)}
+.nav-wrap{height:86px}
+.nav-links{gap:22px}
+.nav-links a{font-size:11px;letter-spacing:-.01em}
+.brand{font-size:24px}
+.button{border-radius:8px;font-size:12px;min-height:52px;padding-inline:22px}
+.button-primary{box-shadow:0 14px 26px #890d2b1e}
+.hero{background:radial-gradient(circle at 80% 42%,#f2e0e4 0,transparent 33%),linear-gradient(110deg,#faf9f3,#f6f4ec 58%,#f4e9e6)}
+.hero-grid{grid-template-columns:1.05fr .95fr;gap:36px;min-height:690px;padding-top:77px;padding-bottom:54px}
+.hero-copy{align-self:center}
+.hero h1{font-size:clamp(52px,5.65vw,81px);letter-spacing:-.082em;line-height:1.075;max-width:680px;margin:28px 0 28px}
+.hero h1 span{color:#991132}
+.hero-lead{max-width:535px;font-size:16px;line-height:1.83;color:#5B5558}
+.hero-proof{margin-top:48px}
+.visual-dashboard{transform:rotate(-2.5deg) translate(0,5px);box-shadow:0 30px 75px #2206134a}
+.art-halo-1{background:linear-gradient(145deg,#a20c35,#60091f);box-shadow:inset 25px 10px 70px #ed89a216,0 45px 85px #850d2828}
+.value-band{background:#F0EFE6;border-top:1px solid #DCD8D1;border-bottom:1px solid #DCD8D1;min-height:103px;display:flex;align-items:center}
+.value-band-inner{display:flex;align-items:center;justify-content:space-between;gap:34px}
+.value-band-inner>span:not(.value-divider){display:flex;align-items:center;gap:16px;color:#38323A;font-weight:800;font-size:13px;white-space:nowrap}
+.value-band-inner .icon{width:28px;height:28px;color:var(--wine)}
+.value-divider{height:32px;width:1px;background:#CFC9C8;flex-shrink:0}
+.section-tag{font-size:10px;letter-spacing:.19em}
+.vision-section{background:#840e2a}
+.solution-section{background:#faf9f3}
+.service-card{border-radius:17px;box-shadow:0 15px 40px #4B26280d;transition:transform .3s,box-shadow .3s,border-color .3s}
+.service-card:hover{transform:translateY(-7px);box-shadow:0 23px 58px #4B262827}
+.service-card.feature-card{background:#840e2a}
+.how-section{background:#F1F1E8}
+.donor-section{background:linear-gradient(130deg,#51091F,#650c24)}
+.campaigns-section{background:#FAFAF5}
+.impact-section{background:#F1F1E8}
+.impact-wrap{background:#860F2B}
+.faq-section,.contact-section{background:#FAF9F4}
+.footer{background:#F0EFE7}
+
+/* Guided interactive marketing demonstration */
+.scenario-section{background:linear-gradient(180deg,#F8F8F2 0%,#F3F0EB 100%);padding:116px 0 112px;position:relative;isolation:isolate;overflow:hidden}
+.scenario-section:before{content:"";position:absolute;top:-240px;right:-200px;width:630px;height:630px;border:1px solid #8c0b2a1a;border-radius:50%;box-shadow:0 0 0 80px #8c0b2a06,0 0 0 160px #8c0b2a04;pointer-events:none;z-index:-1}
+.scenario-heading{display:flex;justify-content:space-between;align-items:end;gap:50px;margin-bottom:43px}
+.scenario-heading h2{font-size:clamp(46px,4.5vw,70px);margin:20px 0 0}
+.scenario-heading>p{max-width:425px;font-size:15px;line-height:1.85;color:#675E62;margin-bottom:9px}
+.scenario-shell{display:grid;grid-template-columns:.84fr 1.16fr;border-radius:24px;box-shadow:0 30px 95px #3d15221b;overflow:hidden;isolation:isolate;border:1px solid #E4DFDA;background:#fff}
+.scenario-controls{padding:41px 41px 31px;background:#FEFDF9}
+.scenario-overline{display:flex;align-items:center;gap:10px;letter-spacing:.12em;font-size:9px;font-weight:800;color:#766B6D;border-bottom:1px solid #EAE5E0;padding-bottom:25px;margin-bottom:30px}
+.scenario-live-dot{height:8px;width:8px;border-radius:50%;background:#A72748;box-shadow:0 0 0 5px #F7E5E8}
+.scenario-control-block{margin-bottom:30px}
+.scenario-control-block h3{font-size:19px;line-height:1.35;font-weight:800;margin:0 0 4px;color:#A50C30;display:flex;gap:13px;align-items:baseline}
+.scenario-control-block h3 span{font-size:18px;color:#261F22}
+.scenario-control-block>p{font-size:12px;color:#8A7C80;margin:0 0 18px 36px;line-height:1.6}
+.scenario-options{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.scenario-option{height:56px;background:#F7F3F1;color:#6D5960;border:1.5px solid #E7DFDB;border-radius:11px;font-size:16px;font-weight:800;transition:background .2s,color .2s,transform .2s,border-color .2s}
+.scenario-option:hover{border-color:#AF7B8A;transform:translateY(-2px)}
+.scenario-option.active{border-color:#910C2B;background:#910C2B;color:white;box-shadow:0 9px 16px #8E0D2B22}
+.scenario-zones{display:grid;gap:9px}
+.scenario-zone{display:flex;align-items:center;gap:12px;border:1.5px solid #E8E1DE;background:#FCFAF7;color:#41383C;border-radius:11px;padding:13px 14px;text-align:left;font-size:12px;font-weight:800;transition:border-color .2s,background .2s,transform .2s}
+.scenario-zone:hover{transform:translateX(3px);border-color:#B9919B}
+.scenario-zone>.icon{width:18px;height:18px;color:#990e30}
+.scenario-zone.active{border-color:#9B1233;background:#FFF0F1}
+.scenario-zone-arrow{margin-left:auto;width:15px!important;height:15px!important}
+.scenario-assurance{border-top:1px solid #EAE5E0;padding-top:20px;display:flex;gap:12px;align-items:flex-start}
+.scenario-assurance>.icon{width:19px;height:19px;color:#80636B;margin-top:3px}
+.scenario-assurance p{font-size:11px;line-height:1.8;color:#8B7A7E;margin:0}
+.scenario-result{background:#660b23;color:#fff;padding:38px 40px 32px;position:relative;overflow:hidden;isolation:isolate}
+.scenario-result:before{content:"";position:absolute;width:470px;height:470px;top:-270px;right:-210px;border:1px solid #FFFFFF29;border-radius:50%;box-shadow:0 0 0 62px #ffffff08,0 0 0 120px #ffffff06;z-index:-1;pointer-events:none}
+.result-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:29px}
+.result-toolbar>span:first-child{font-size:11px;font-weight:800;letter-spacing:-.015em}
+.result-star{color:#FAABB6;margin-right:6px}
+.result-demo-tag{font-size:8px;font-weight:800;letter-spacing:.11em;border:1px solid #ffffff48;color:#ffe4e8;border-radius:6px;padding:7px 9px;white-space:nowrap}
+.result-status{border:1px solid #ffffff30;background:#ffffff10;padding:17px 18px;border-radius:13px;display:flex;gap:13px;align-items:center;margin-bottom:24px}
+.result-status-icon{width:39px;height:39px;background:#ffffff21;color:#FFCAD5;display:grid;place-items:center;border-radius:11px;flex-shrink:0}
+.result-status-icon .icon{width:19px;height:19px}
+.result-status small,.result-status strong{display:block}
+.result-status small{color:#f0b6c2;font-size:8px;font-weight:800;letter-spacing:.13em}
+.result-status strong{font-size:17px;letter-spacing:-.04em;margin-top:3px}
+.result-status-pill{margin-left:auto;background:#ffffff18;border:1px solid #ffffff25;padding:5px 9px;border-radius:99px;font-size:10px;color:#FFCAD5;white-space:nowrap}
+.result-timeline{position:relative;padding-left:14px}
+.result-timeline-line{position:absolute;left:10px;top:14px;bottom:70px;border-left:1px dashed #FFFFFF59}
+.result-event{position:relative;display:flex;gap:20px;padding:0 0 25px}
+.result-event-dot{position:relative;flex-shrink:0;border-radius:50%;height:13px;width:13px;margin-left:-10px;margin-top:5px;background:#FFCBD5;border:3px solid #660B23;box-shadow:0 0 0 1px #FFCBD5}
+.result-event>div{flex:1;min-width:0}
+.result-event small{display:block;font-size:9px;letter-spacing:.14em;color:#F2B8C5;font-weight:800;margin-bottom:5px}
+.result-event strong{font-size:14px;letter-spacing:-.025em;display:block}
+.result-event p{font-size:11px;color:#E9C1CB;line-height:1.7;margin:4px 0 0}
+.result-sms{background:#FFFFFF;color:#33252B;border-radius:12px 12px 12px 3px;padding:16px 17px;margin:11px 0 2px;box-shadow:0 12px 22px #36051524;max-width:460px}
+.result-sms-sender{font-size:9px;color:#A5133B;font-weight:800}
+.result-sms p{color:#4F4147;font-size:12px;line-height:1.75;margin-top:7px}
+.result-footer{display:flex;align-items:center;gap:10px;padding-top:17px;border-top:1px solid #ffffff38;color:#FADDE4;font-size:11px;font-weight:700}
+.result-footer .icon{width:18px;height:18px;color:#FFCCD5}
+.scenario-bottom{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:25px}
+.scenario-bottom>span{font-size:10px;color:#8F737B;text-transform:uppercase;letter-spacing:.14em;font-weight:800;white-space:nowrap}
+.scenario-bottom p{font-size:12px;color:#776B70;margin:0}
+.scenario-bottom b{color:#3D3036;font-weight:800}
+
+/* High-contrast calls to action and quietly stronger editorial consistency */
+.service-card h3{letter-spacing:-.055em}
+.contact-panel{border-radius:22px}
+.impact-wrap{border-radius:22px}
+.map-card{border-radius:17px}
+.phone{box-shadow:0 25px 60px #16020D55}
+.footer-menu a:hover{text-decoration:underline;text-underline-offset:5px}
+
+@media(max-width:1170px){
+ .container{width:min(1130px,calc(100% - 64px))}
+ .nav-links{gap:14px}.nav-links a{font-size:10px}
+ .nav-cta{font-size:10px;padding-inline:12px}
+ .scenario-controls{padding:32px 30px}.scenario-result{padding:34px 30px}
+}
+@media(max-width:940px){
+ .container{width:calc(100% - 56px)}
+ .nav-links{gap:0}.nav-links a{font-size:14px}
+ .hero-grid{grid-template-columns:1fr}.hero h1{font-size:clamp(54px,8vw,76px)}
+ .value-band-inner{gap:17px}.value-band-inner>span:not(.value-divider){font-size:11px;gap:9px}.value-band-inner .icon{width:23px;height:23px}
+ .scenario-heading{align-items:start;flex-direction:column;gap:7px}
+ .scenario-heading>p{max-width:680px}
+}
+@media(max-width:720px){
+ .section{padding:80px 0}
+ .container{width:calc(100% - 38px)}
+ .topline{font-size:8px;letter-spacing:.08em}
+ .nav-wrap{height:69px}
+ .hero-grid{padding-top:54px;padding-bottom:34px}
+ .hero h1{font-size:clamp(45px,9.3vw,63px);line-height:1.08;letter-spacing:-.08em}
+ .hero-lead{font-size:14px;line-height:1.8}
+ .value-band{min-height:0;padding:24px 0}
+ .value-band-inner{display:grid;grid-template-columns:1fr;gap:16px}
+ .value-band-inner>span:not(.value-divider){font-size:12px;gap:14px}.value-divider{display:none}
+ .scenario-section{padding:78px 0}
+ .scenario-heading h2{font-size:clamp(43px,9vw,60px)}
+ .scenario-heading>p{font-size:13px;margin-top:0}
+ .scenario-shell{grid-template-columns:1fr;border-radius:18px}
+ .scenario-controls,.scenario-result{padding:25px 23px}
+ .scenario-overline{font-size:8px;margin-bottom:24px}
+ .scenario-control-block h3 span{font-size:16px}
+ .scenario-control-block>p{font-size:11px}
+ .result-status{padding:14px 13px}.result-status strong{font-size:16px}
+ .scenario-bottom{align-items:start;flex-direction:column;gap:6px}
+ .scenario-bottom>span{font-size:9px}
+ .result-toolbar>span:first-child{font-size:10px}.result-demo-tag{font-size:7px}
+}
+@media(max-width:390px){
+ .scenario-controls,.scenario-result{padding:23px 17px}
+ .scenario-option{height:52px;font-size:14px}
+ .result-status-pill{font-size:9px;padding-inline:6px}
+ .result-sms{padding:12px 13px}
+ .result-event{gap:14px}
+}
+
+</style>
+  <title>SangUrgence — Agir avant la pénurie.</title>
+</head>
+<body>
+  <!-- Symbols are part of the web app; no external icon library required. -->
+  <svg class="svg-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/><path d="M3.5 12.4h4.1l2-3.4 2.5 6.5 2.1-3.1h6.4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m6 16 4-5 3 3 5-8"/><path d="M15 6h3v3"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h3l5 3 5-3h3a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z"/><path d="M6 10h12M6 14h8"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M2 20v-2a7 7 0 0 1 14 0v2H2Z"/><path d="M17 4a3 3 0 0 1 0 6m2 3a6 6 0 0 1 3 5v2h-3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 21 6v6c0 6-4.5 9-9 10-4.5-1-9-4-9-10V6l9-4Z"/><path d="m8 12 2.5 2.5L16 9"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2Z"/></symbol>
+    <symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8ZM10 21h4"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 5h8a4 4 0 0 1 0 8H9a4 4 0 0 0 0 8h8"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div class="topline"><span class="topline-dot"></span> SANGURGENCE <span aria-hidden="true">·</span> L’INNOVATION AU SERVICE DU DON DE SANG</div>
+  <header class="site-header" id="header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#accueil" aria-label="SangUrgence — Retour à l'accueil">
+        <span class="brand-mark"><svg viewBox="0 0 42 42" aria-hidden="true"><path d="M21 3C16 11 8 20 8 27a13 13 0 0 0 26 0C34 20 26 11 21 3Z" fill="currentColor"/><path d="m14 25 4.5 0 2.5-4 3.4 8 2.3-4H29" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3"/></svg></span>
+        <span>Sang<span class="brand-accent">Urgence</span></span>
+      </a>
+      <nav class="nav-links" id="primary-nav" aria-label="Navigation principale">
+        <a href="#vision">Notre vision</a>
+        <a href="#solution">La solution</a>
+        <a href="#fonctionnement">Comment ça marche</a>
+        <a href="#experience">Démo interactive</a>
+        <a href="#impact">Notre impact</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="button button-dark nav-cta" href="#experience">Explorer la démonstration <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Ouvrir le menu"><svg class="icon" aria-hidden="true"><use href="#i-menu" /></svg></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="accueil">
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow"><span class="eyebrow-line"></span> LA SOLIDARITÉ PREND UNE LONGUEUR D’AVANCE</span>
+          <h1>Ne plus attendre<br />la pénurie <span>pour agir.</span></h1>
+          <p class="hero-lead">SangUrgence transforme un besoin anticipé en une réponse coordonnée : identifier les tensions à venir, contacter les donneurs volontaires et faciliter leur venue vers le point de collecte le plus adapté.</p>
+          <div class="hero-actions">
+            <a href="#solution" class="button button-primary">Découvrir SangUrgence <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+            <a href="#experience" class="text-link">Explorer un scénario <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+          </div>
+          <div class="hero-proof"><div class="proof-glyphs" aria-hidden="true"><span><svg class="icon"><use href="#i-chart" /></svg></span><span><svg class="icon"><use href="#i-pin" /></svg></span><span><svg class="icon"><use href="#i-heart" /></svg></span></div><span>Une approche intégrée.<br /><strong>De l’anticipation à la mobilisation.</strong></span></div>
+        </div>
+        <div class="hero-art reveal delay-1" aria-label="Illustration du parcours SangUrgence, de l'anticipation à la mobilisation">
+          <div class="art-halo art-halo-1"></div><div class="art-halo art-halo-2"></div>
+          <div class="hero-orbit orbit-left" aria-hidden="true"><svg class="icon"><use href="#i-spark" /></svg></div>
+          <div class="visual-dashboard">
+            <div class="dashboard-top"><div class="db-brand"><span class="tiny-drop"></span> SangUrgence <span class="db-muted">/ Vue d'ensemble</span></div><span class="db-dots"><i></i><i></i><i></i></span></div>
+            <div class="dash-label">UN PARCOURS DE MOBILISATION INTELLIGENT</div>
+            <div class="dash-stage">
+              <span class="stage-icon"><svg class="icon"><use href="#i-chart" /></svg></span>
+              <div><b>Anticiper le besoin</b><small>Repérer les tensions à venir</small></div><span class="stage-complete"><svg class="icon"><use href="#i-check" /></svg></span>
+            </div>
+            <div class="stage-connector"><i></i><i></i><i></i></div>
+            <div class="dash-stage stage-highlight">
+              <span class="stage-icon"><svg class="icon"><use href="#i-pin" /></svg></span>
+              <div><b>Identifier la bonne zone</b><small>Proposer des collectes accessibles</small></div><span class="stage-complete"><svg class="icon"><use href="#i-check" /></svg></span>
+            </div>
+            <div class="stage-connector"><i></i><i></i><i></i></div>
+            <div class="dash-stage">
+              <span class="stage-icon"><svg class="icon"><use href="#i-message" /></svg></span>
+              <div><b>Mobiliser au bon moment</b><small>Informer les donneurs concernés</small></div><span class="stage-complete"><svg class="icon"><use href="#i-check" /></svg></span>
+            </div>
+            <div class="dash-footer"><span class="dot-live"></span> Un lien entre anticipation et action <svg class="icon"><use href="#i-arrow" /></svg></div>
+          </div>
+          <div class="floating-card float-top" aria-hidden="true"><span class="float-ico"><svg class="icon"><use href="#i-bell" /></svg></span><div><b>Besoin anticipé</b><small>Agir avant l'urgence</small></div></div>
+          <div class="floating-card float-bottom" aria-hidden="true"><span class="float-ico float-ico-light"><svg class="icon"><use href="#i-message" /></svg></span><div><b>Invitation personnalisée</b><small>Un point de collecte proche</small></div><span class="check-mini"><svg class="icon"><use href="#i-check" /></svg></span></div>
+        </div>
+      </div>
+      <div class="hero-bottom-line container"><span>01 / UNE NOUVELLE APPROCHE</span><a href="#vision" aria-label="Défiler vers notre vision">Découvrir la vision <span aria-hidden="true">↓</span></a></div>
+    </section>
+
+    <div class="value-band" aria-label="Les trois piliers de SangUrgence"><div class="container value-band-inner">
+      <span><svg class="icon"><use href="#i-chart"/></svg> Anticiper les tensions</span><span class="value-divider" aria-hidden="true"></span>
+      <span><svg class="icon"><use href="#i-pin"/></svg> Orienter les donneurs</span><span class="value-divider" aria-hidden="true"></span>
+      <span><svg class="icon"><use href="#i-message"/></svg> Activer les campagnes</span>
+    </div></div>
+
+    <section id="vision" class="section vision-section">
+      <div class="container vision-layout">
+        <div class="vision-left reveal"><span class="section-tag tag-light">01 / LE CONSTAT</span><h2>Le véritable enjeu, <em>c'est d'agir à temps.</em></h2><p>Un besoin en sang peut évoluer rapidement. Lorsque l'on attend qu'une tension devienne critique pour mobiliser, chaque étape prend plus de temps.</p><p class="vision-bold">Nous voulons passer d'une réaction à l'urgence à une mobilisation anticipée.</p><a href="#solution" class="light-link">Notre réponse <svg class="icon"><use href="#i-arrow" /></svg></a></div>
+        <div class="vision-right reveal delay-1">
+          <div class="challenge-card"><span class="challenge-number">01</span><div><h3>Des besoins qui évoluent</h3><p>Les centres doivent composer avec des réserves et des besoins variables.</p></div><svg class="icon"><use href="#i-chart" /></svg></div>
+          <div class="challenge-card"><span class="challenge-number">02</span><div><h3>Des donneurs à mobiliser</h3><p>Atteindre les bonnes personnes dans les zones pertinentes reste un défi.</p></div><svg class="icon"><use href="#i-people" /></svg></div>
+          <div class="challenge-card"><span class="challenge-number">03</span><div><h3>Des actions à coordonner</h3><p>Une campagne n'est utile que si elle répond à un besoin clairement identifié.</p></div><svg class="icon"><use href="#i-calendar" /></svg></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution" class="section solution-section">
+      <div class="container">
+        <div class="section-head reveal"><span class="section-tag">02 / NOTRE SOLUTION</span><h2>Une solution.<br /><span>Trois leviers d’action.</span></h2><p>SangUrgence relie la compréhension des besoins, la proximité des donneurs et l'organisation des collectes dans un même parcours.</p></div>
+        <div class="service-grid">
+          <article class="service-card reveal" aria-label="Service 1 : Anticiper"><span class="service-top">01 / PRÉVOIR <svg class="icon"><use href="#i-arrow" /></svg></span><div class="service-icon"><svg class="icon"><use href="#i-chart" /></svg></div><h3>Anticiper<br />les besoins</h3><p>Repérer plus tôt les risques de tension et permettre aux centres de préparer leur réponse.</p><span class="service-bottom">Anticiper plutôt que subir.</span></article>
+          <article class="service-card feature-card reveal delay-1" aria-label="Service 2 : Localiser"><span class="service-top">02 / CONNECTER <svg class="icon"><use href="#i-arrow" /></svg></span><div class="service-icon"><svg class="icon"><use href="#i-pin" /></svg></div><h3>Rapprocher<br />les donneurs</h3><p>Identifier les zones pertinentes et orienter chaque volontaire vers un point de collecte proche de sa zone.</p><span class="service-bottom">Le bon lieu pour chaque volontaire.</span></article>
+          <article class="service-card reveal delay-2" aria-label="Service 3 : Mobiliser"><span class="service-top">03 / MOBILISER <svg class="icon"><use href="#i-arrow" /></svg></span><div class="service-icon"><svg class="icon"><use href="#i-message" /></svg></div><h3>Mobiliser<br />au bon moment</h3><p>Envoyer des SMS ciblés, orienter les volontaires vers une collecte proche et organiser des campagnes selon les groupes sanguins nécessaires.</p><span class="service-bottom">Du message à la mobilisation.</span></article>
+        </div>
+        <div class="solution-foot reveal"><span class="solution-foot-icon"><svg class="icon"><use href="#i-spark" /></svg></span><p>Notre différence : <strong>ne pas attendre l'urgence pour commencer à mobiliser.</strong></p></div>
+      </div>
+    </section>
+
+    <section id="fonctionnement" class="section how-section">
+      <div class="container how-layout">
+        <div class="how-intro reveal"><span class="section-tag">03 / COMMENT ÇA MARCHE</span><h2>De l'anticipation<br /><span>à l'action.</span></h2><p>Une méthode en quatre temps pour relier un besoin identifié aux actions que les équipes peuvent organiser.</p><div class="step-list" role="tablist" aria-label="Les étapes du parcours SangUrgence">
+          <button class="step-button active" type="button" role="tab" id="tab-step-0" aria-selected="true" aria-controls="step-panel" data-step="0"><span>01</span><div><b>Identifier le besoin</b><small>Comprendre où une tension pourrait apparaître</small></div><svg class="icon"><use href="#i-arrow" /></svg></button>
+          <button class="step-button" type="button" role="tab" id="tab-step-1" aria-selected="false" aria-controls="step-panel" data-step="1" tabindex="-1"><span>02</span><div><b>Choisir la zone</b><small>Rapprocher le besoin des donneurs concernés</small></div><svg class="icon"><use href="#i-arrow" /></svg></button>
+          <button class="step-button" type="button" role="tab" id="tab-step-2" aria-selected="false" aria-controls="step-panel" data-step="2" tabindex="-1"><span>03</span><div><b>Envoyer les invitations</b><small>Informer par SMS et proposer un point de collecte</small></div><svg class="icon"><use href="#i-arrow" /></svg></button>
+          <button class="step-button" type="button" role="tab" id="tab-step-3" aria-selected="false" aria-controls="step-panel" data-step="3" tabindex="-1"><span>04</span><div><b>Organiser et suivre</b><small>Préparer la collecte et suivre les retours</small></div><svg class="icon"><use href="#i-arrow" /></svg></button>
+        </div></div>
+        <div class="how-preview reveal delay-1" role="tabpanel" id="step-panel" aria-labelledby="tab-step-0" tabindex="0">
+          <div class="preview-label"><span class="preview-dot"></span> DÉCOUVREZ LE PARCOURS <span class="preview-counter" id="preview-counter">01 / 04</span></div>
+          <div class="preview-visual" id="preview-visual" aria-hidden="true"><div class="preview-illustration"><span class="preview-illustration-glow"></span><svg class="icon"><use href="#i-chart" /></svg></div><span class="preview-arc one"></span><span class="preview-arc two"></span></div>
+          <div class="preview-copy"><div class="preview-small" id="preview-small">ÉTAPE 01 — ANTICIPATION</div><h3 id="preview-title">Voir venir, pour mieux agir.</h3><p id="preview-desc">SangUrgence aide le centre à repérer un besoin potentiel et à préparer une action avant que la situation ne devienne critique.</p></div>
+          <div class="preview-pagination" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+          <span class="preview-disclaimer">Illustration du fonctionnement envisagé</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="experience" class="section scenario-section" aria-labelledby="scenario-heading">
+      <div class="container">
+        <div class="scenario-heading reveal"><div><span class="section-tag">04 / MISE EN SITUATION</span><h2 id="scenario-heading">Voyez comment<br /><span>l’action prend forme.</span></h2></div><p>Un besoin apparaît. SangUrgence aide à définir une réponse cohérente. Découvrez le parcours avec un exemple interactif, conçu pour présenter notre vision.</p></div>
+        <div class="scenario-shell reveal delay-1">
+          <div class="scenario-controls">
+            <span class="scenario-overline"><span class="scenario-live-dot"></span> UNE DÉMONSTRATION, PAS UNE ALERTE RÉELLE</span>
+            <div class="scenario-control-block"><h3>01 <span>Quel groupe est recherché&nbsp;?</span></h3><p>Sélectionnez un besoin sanguin fictif.</p>
+              <div class="scenario-options" role="group" aria-label="Sélectionner le groupe sanguin">
+                <button type="button" class="scenario-option active" data-blood="O−" aria-pressed="true">O−</button>
+                <button type="button" class="scenario-option" data-blood="A+" aria-pressed="false">A+</button>
+                <button type="button" class="scenario-option" data-blood="B−" aria-pressed="false">B−</button>
+                <button type="button" class="scenario-option" data-blood="AB+" aria-pressed="false">AB+</button>
+              </div>
+            </div>
+            <div class="scenario-control-block"><h3>02 <span>Où mobiliser&nbsp;?</span></h3><p>Choisissez une zone pour la campagne.</p>
+              <div class="scenario-zones" role="group" aria-label="Sélectionner la zone de mobilisation">
+                <button type="button" class="scenario-zone active" data-demo-zone="universitaire" aria-pressed="true"><svg class="icon"><use href="#i-people"/></svg> Campus universitaire <svg class="icon scenario-zone-arrow"><use href="#i-arrow"/></svg></button>
+                <button type="button" class="scenario-zone" data-demo-zone="entreprise" aria-pressed="false"><svg class="icon"><use href="#i-shield"/></svg> Zone d’activité <svg class="icon scenario-zone-arrow"><use href="#i-arrow"/></svg></button>
+                <button type="button" class="scenario-zone" data-demo-zone="quartier" aria-pressed="false"><svg class="icon"><use href="#i-pin"/></svg> Quartier résidentiel <svg class="icon scenario-zone-arrow"><use href="#i-arrow"/></svg></button>
+              </div>
+            </div>
+            <div class="scenario-assurance"><svg class="icon"><use href="#i-shield"/></svg><p>Les invitations sont destinées aux donneurs volontaires et les campagnes restent validées et organisées par les équipes habilitées.</p></div>
+          </div>
+          <div class="scenario-result" aria-live="polite" aria-atomic="true">
+            <div class="result-toolbar"><span><span class="result-star">✳</span> Aperçu d’une activation</span><span class="result-demo-tag">SCÉNARIO FICTIF</span></div>
+            <div class="result-status"><span class="result-status-icon"><svg class="icon"><use href="#i-bell"/></svg></span><div><small>BESOIN SÉLECTIONNÉ</small><strong>Groupe <span id="demo-group">O−</span></strong></div><span class="result-status-pill">À organiser</span></div>
+            <div class="result-timeline"><span class="result-timeline-line"></span>
+              <div class="result-event"><span class="result-event-dot"></span><div><small>01 · ANTICIPER</small><strong>Un besoin est identifié</strong><p>Le centre peut préparer une réponse en amont.</p></div></div>
+              <div class="result-event"><span class="result-event-dot"></span><div><small>02 · CIBLER</small><strong id="demo-target">Zone universitaire</strong><p id="demo-zone-desc">Une campagne accessible depuis le lieu d’études.</p></div></div>
+              <div class="result-event"><span class="result-event-dot"></span><div><small>03 · INFORMER</small><strong>Prévisualisation du SMS</strong><div class="result-sms"><span class="result-sms-sender">SangUrgence · Message exemple</span><p id="demo-sms">Bonjour, une collecte recherche des donneurs O− près de votre zone universitaire. Un point de collecte vous sera indiqué si vous souhaitez participer.</p></div></div></div>
+            </div>
+            <div class="result-footer"><svg class="icon"><use href="#i-circle-check"/></svg><span>Une invitation utile, vers une collecte adaptée au besoin.</span></div>
+          </div>
+        </div>
+        <div class="scenario-bottom reveal"><span>Ce que montre cette expérience</span><p><b>Anticiper un besoin</b> → <b>choisir une zone</b> → <b>contacter par SMS</b> → <b>orienter vers la collecte.</b></p></div>
+      </div>
+    </section>
+
+    <section id="parcours" class="section donor-section">
+      <div class="container donor-layout">
+        <div class="donor-copy reveal"><span class="section-tag tag-light">05 / L’EXPÉRIENCE DONNEUR</span><h2>Un message.<br />Un lieu proche.<br /><em>Un geste qui compte.</em></h2><p>La mobilisation doit être simple : chaque donneur volontaire reçoit une invitation adaptée au besoin et peut identifier un lieu de collecte accessible depuis sa zone de résidence, de travail ou d'études.</p><ul class="donor-list"><li><svg class="icon"><use href="#i-circle-check" /></svg> Invitation ciblée selon le groupe sanguin recherché</li><li><svg class="icon"><use href="#i-circle-check" /></svg> Orientation vers un point de collecte proche</li><li><svg class="icon"><use href="#i-circle-check" /></svg> Possibilité de répondre à l'invitation</li></ul><div class="donor-note">La participation est volontaire. L'aptitude au don est toujours évaluée par les professionnels de santé.</div></div>
+        <div class="phone-composition reveal delay-1">
+          <div class="phone-decor-ring ring-one"></div><div class="phone-decor-ring ring-two"></div>
+          <div class="phone">
+            <div class="phone-top"><span class="phone-time">9:41</span><span class="phone-signal">●●●  ▰</span></div><div class="phone-notch"></div>
+            <div class="phone-header"><span class="back-chevron">‹</span><div class="phone-logo"><svg class="icon"><use href="#i-heart" /></svg></div><div><b>SangUrgence</b><small>Invitation à participer</small></div><span class="phone-ellipsis">•••</span></div>
+            <div class="phone-content" id="phone-content">
+              <div class="message-time">AUJOURD'HUI</div>
+              <div class="sms-bubble"><b>Une collecte a besoin de vous ❤️</b><p>Une campagne recherche des donneurs de votre groupe sanguin dans votre zone. Un point de collecte proche peut vous accueillir.</p></div>
+              <div class="phone-location"><span class="phone-location-icon"><svg class="icon"><use href="#i-pin" /></svg></span><div><b>Point de collecte à proximité</b><small>Lieu communiqué lors de l'invitation</small></div><svg class="icon"><use href="#i-arrow" /></svg></div>
+              <div class="phone-choice"><span>Je souhaite participer</span><svg class="icon"><use href="#i-check" /></svg></div>
+              <div class="phone-footnote">Exemple fictif d'invitation</div>
+            </div><div class="phone-home"></div>
+          </div>
+          <div class="phone-tag phone-tag-a"><svg class="icon"><use href="#i-message" /></svg> SMS personnalisé</div>
+          <div class="phone-tag phone-tag-b"><svg class="icon"><use href="#i-route" /></svg> Collecte à proximité</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="campagnes" class="section campaigns-section">
+      <div class="container campaigns-layout">
+        <div class="campaigns-visual reveal">
+          <div class="map-card"><div class="map-head"><div><b>Une mobilisation pensée par zone</b><small>Exemple de planification de campagne</small></div><span class="map-status"><span></span> Vue illustrative</span></div>
+            <div class="map-canvas" aria-label="Schéma illustratif de plusieurs zones de mobilisation, sans géographie réelle">
+              <div class="map-street street-a"></div><div class="map-street street-b"></div><div class="map-street street-c"></div><div class="map-street street-d"></div>
+              <div class="map-lake"></div><div class="map-green green-a"></div><div class="map-green green-b"></div>
+              <button class="map-pin p-campus active" type="button" data-zone="campus" aria-label="Voir la zone universitaire" aria-pressed="true"><svg class="icon"><use href="#i-pin" /></svg></button>
+              <button class="map-pin p-company" type="button" data-zone="entreprise" aria-label="Voir la zone d'activité" aria-pressed="false"><svg class="icon"><use href="#i-pin" /></svg></button>
+              <button class="map-pin p-community" type="button" data-zone="quartier" aria-label="Voir la zone résidentielle" aria-pressed="false"><svg class="icon"><use href="#i-pin" /></svg></button>
+              <div class="zone-radius"></div>
+              <div class="map-name n-campus">Zone universitaire</div><div class="map-name n-company">Zone d'activité</div><div class="map-name n-community">Zone résidentielle</div>
+            </div>
+            <div class="map-bottom"><span class="zone-icon"><svg class="icon"><use href="#i-pin" /></svg></span><div><small>ZONE SÉLECTIONNÉE</small><b id="zone-title">Zone universitaire</b><span id="zone-desc">Inviter des donneurs près de leur lieu d'études.</span></div></div>
+          </div>
+          <span class="map-float"><svg class="icon"><use href="#i-calendar" /></svg> Campagnes adaptées au besoin</span>
+        </div>
+        <div class="campaigns-copy reveal delay-1"><span class="section-tag">06 / CAMPAGNES CIBLÉES</span><h2>La bonne campagne.<br /><span>Au bon endroit.</span></h2><p>Les campagnes de collecte deviennent plus pertinentes lorsqu'elles sont organisées en fonction des groupes sanguins recherchés et des zones où les donneurs volontaires peuvent être mobilisés.</p><div class="campaign-benefits"><div><span><svg class="icon"><use href="#i-people" /></svg></span><div><b>Selon les besoins sanguins</b><p>Prioriser les groupes recherchés par les centres.</p></div></div><div><span><svg class="icon"><use href="#i-pin" /></svg></span><div><b>Selon les zones</b><p>Universités, entreprises et quartiers : adapter la collecte au terrain.</p></div></div><div><span><svg class="icon"><use href="#i-check" /></svg></span><div><b>Selon les retours</b><p>Suivre les invitations, les confirmations et les participations.</p></div></div></div><a href="#faq" class="text-link text-link-dark">Comprendre notre approche <svg class="icon"><use href="#i-arrow" /></svg></a></div>
+      </div>
+    </section>
+
+    <section id="impact" class="section impact-section">
+      <div class="container impact-wrap reveal"><div class="impact-heading"><span class="section-tag tag-light">07 / L’IMPACT RECHERCHÉ</span><h2>Plus de visibilité.<br /><em>Plus de coordination.</em><br />Plus d'impact.</h2><p>Nous voulons contribuer à une organisation plus fluide du don de sang, en soutenant les professionnels et en simplifiant la participation des donneurs.</p></div><div class="impact-grid"><div class="impact-item"><svg class="icon"><use href="#i-chart" /></svg><h3>Pour les centres</h3><p>Préparer plus tôt les besoins et disposer d'une vision plus claire des actions à organiser.</p></div><div class="impact-item"><svg class="icon"><use href="#i-people" /></svg><h3>Pour les donneurs</h3><p>Recevoir des invitations pertinentes et accéder plus facilement à un lieu de collecte.</p></div><div class="impact-item"><svg class="icon"><use href="#i-calendar" /></svg><h3>Pour les campagnes</h3><p>Mieux cibler les zones et suivre la réponse des volontaires.</p></div><div class="impact-item"><svg class="icon"><use href="#i-heart" /></svg><h3>Pour la communauté</h3><p>Faire de la solidarité un élan plus anticipé, organisé et accessible.</p></div></div></div>
+    </section>
+
+    <section id="faq" class="section faq-section">
+      <div class="container faq-layout"><div class="faq-intro reveal"><span class="section-tag">08 / QUESTIONS FRÉQUENTES</span><h2>Vous vous posez<br /><span>des questions&nbsp;?</span></h2><p>Voici l'essentiel pour comprendre ce que SangUrgence propose et le rôle de chacun.</p><a href="#contact" class="text-link text-link-dark">Parlons de SangUrgence <svg class="icon"><use href="#i-arrow" /></svg></a></div><div class="faq-items reveal delay-1">
+        <details><summary>Qu'est-ce que SangUrgence&nbsp;? <svg class="icon"><use href="#i-chevron" /></svg></summary><p>SangUrgence est un projet de plateforme visant à anticiper les risques de pénurie de sang et à faciliter une mobilisation ciblée des donneurs, en coordination avec les acteurs de la collecte.</p></details>
+        <details><summary>À qui s'adresse la solution&nbsp;? <svg class="icon"><use href="#i-chevron" /></svg></summary><p>Notre approche est pensée pour les centres de transfusion, les structures organisant des collectes et les donneurs volontaires. Elle vise à créer un lien plus simple entre les besoins et la mobilisation sur le terrain.</p></details>
+        <details><summary>Comment les donneurs seront-ils informés&nbsp;? <svg class="icon"><use href="#i-chevron" /></svg></summary><p>Les donneurs volontaires pourront être invités par SMS selon les groupes sanguins recherchés et les zones de mobilisation, dans le respect de leur consentement et de leurs préférences de contact.</p></details>
+        <details><summary>Comment trouver un point de collecte proche&nbsp;? <svg class="icon"><use href="#i-chevron" /></svg></summary><p>L'objectif est de proposer des lieux de collecte accessibles depuis une zone pertinente pour le donneur, comme son quartier, son lieu de travail ou d'études. Les lieux et les horaires seront confirmés par les organisateurs.</p></details>
+        <details><summary>Peut-on organiser des campagnes par groupe sanguin&nbsp;? <svg class="icon"><use href="#i-chevron" /></svg></summary><p>Oui, c'est une fonction centrale envisagée : permettre aux organisateurs de préparer des campagnes ciblées selon le besoin identifié, puis de suivre les retours et la participation.</p></details>
+        <details><summary>SangUrgence remplace-t-il les professionnels de santé&nbsp;? <svg class="icon"><use href="#i-chevron" /></svg></summary><p>Non. SangUrgence se positionne comme un outil complémentaire d'aide à l'organisation. La sélection médicale des donneurs, la qualification des produits sanguins et les décisions transfusionnelles relèvent exclusivement des professionnels habilités.</p></details>
+        <details><summary>La plateforme est-elle déjà déployée&nbsp;? <svg class="icon"><use href="#i-chevron" /></svg></summary><p>SangUrgence est en cours de développement. Les expériences montrées ici illustrent les services envisagés, sans représenter des données, des alertes ou des collectes réelles. Les fonctionnalités devront être évaluées avant leur déploiement.</p></details>
+      </div></div>
+    </section>
+
+    <section id="contact" class="contact-section"><div class="container"><div class="contact-panel reveal"><div class="contact-glow"></div><div class="contact-copy"><span class="section-tag tag-light">ET SI NOUS AGISSIONS PLUS TÔT&nbsp;?</span><h2>Ensemble, faisons<br /><em>avancer la solidarité.</em></h2><p>Découvrez la vision de SangUrgence et échangeons sur les possibilités de collaboration autour du don de sang.</p><div class="contact-actions"><a class="button button-white" id="contact-email" href="mailto:raiddriarpro@gmail.com?subject=SangUrgence%20%E2%80%94%20Prise%20de%20contact">Échanger sur le projet <svg class="icon"><use href="#i-arrow" /></svg></a><a class="contact-secondary" href="#accueil">Revenir en haut ↑</a></div></div><div class="contact-illustration" aria-hidden="true"><div class="contact-heart-ring r1"></div><div class="contact-heart-ring r2"></div><div class="contact-heart-ring r3"></div><svg class="heart-large icon"><use href="#i-heart" /></svg><span class="contact-spark spark1">✳</span><span class="contact-spark spark2">✳</span></div></div></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><div><a class="brand brand-footer" href="#accueil" aria-label="SangUrgence — Accueil"><span class="brand-mark"><svg viewBox="0 0 42 42" aria-hidden="true"><path d="M21 3C16 11 8 20 8 27a13 13 0 0 0 26 0C34 20 26 11 21 3Z" fill="currentColor"/><path d="m14 25 4.5 0 2.5-4 3.4 8 2.3-4H29" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3"/></svg></span><span>Sang<span class="brand-accent">Urgence</span></span></a><p>Anticiper. Mobiliser. Agir plus tôt.</p></div><div class="footer-menu"><a href="#vision">Vision</a><a href="#solution">Solution</a><a href="#fonctionnement">Parcours</a><a href="#experience">Démonstration</a><a href="#faq">FAQ</a></div></div><div class="container footer-bottom"><span>© <span id="year">2026</span> SangUrgence. Une solution HealthTech en développement.</span><span>Conçu avec l'ambition de rapprocher besoins et solidarité.</span></div></footer>
+  <script>
+(() => {
+  "use strict";
+  document.documentElement.classList.add('has-js');
+
+  // Marketing interactions only; no donor information is captured or sent.
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  const header = $('#header');
+  const menuToggle = $('#menu-toggle');
+  const primaryNav = $('#primary-nav');
+  const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 18);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+
+  const closeMenu = () => {
+    if (!primaryNav || !menuToggle) return;
+    primaryNav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+    menuToggle.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>';
+  };
+
+  menuToggle?.addEventListener('click', event => {
+    event.stopPropagation();
+    const opened = primaryNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(opened));
+    menuToggle.setAttribute('aria-label', opened ? 'Fermer le menu' : 'Ouvrir le menu');
+    menuToggle.innerHTML = `<svg class="icon" aria-hidden="true"><use href="${opened ? '#i-close' : '#i-menu'}"/></svg>`;
+  });
+  $$('#primary-nav a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  document.addEventListener('click', e => { if (primaryNav?.classList.contains('open') && !header?.contains(e.target)) closeMenu(); });
+
+  // Observe intersections to reveal content and highlight the visited navigation section.
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+    $$('.reveal').forEach(el => revealObserver.observe(el));
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        $$('#primary-nav a').forEach(a => a.classList.toggle('current', a.getAttribute('href') === `#${entry.target.id}`));
+      });
+    }, { rootMargin: '-18% 0px -65% 0px' });
+    $$('main section[id]').forEach(s => sectionObserver.observe(s));
+  } else {
+    $$('.reveal').forEach(el => el.classList.add('visible'));
+  }
+
+  const steps = [
+    {
+      label: 'ÉTAPE 01 — ANTICIPATION',
+      title: 'Voir venir, pour mieux agir.',
+      desc: 'SangUrgence aide le centre à repérer un besoin potentiel et à préparer une action avant que la situation ne devienne critique.',
+      icon: '#i-chart'
+    },
+    {
+      label: 'ÉTAPE 02 — PROXIMITÉ',
+      title: 'Trouver les zones pertinentes.',
+      desc: 'Les organisateurs peuvent identifier les zones de travail, d’études ou de résidence qui faciliteraient la participation de donneurs concernés.',
+      icon: '#i-pin'
+    },
+    {
+      label: 'ÉTAPE 03 — INVITATION',
+      title: 'Informer les bonnes personnes.',
+      desc: 'Les volontaires reçoivent une invitation par SMS liée au groupe sanguin recherché, avec l’indication d’un point de collecte accessible.',
+      icon: '#i-message'
+    },
+    {
+      label: 'ÉTAPE 04 — COORDINATION',
+      title: 'Transformer l’intérêt en action.',
+      desc: 'Les équipes organisent les campagnes et suivent les réponses, confirmations et participations pour ajuster leur mobilisation.',
+      icon: '#i-circle-check'
+    }
+  ];
+  const stepButtons = $$('.step-button');
+  const stepPanel = $('#step-panel');
+  const showStep = (index, focus = false) => {
+    const step = steps[index];
+    if (!step) return;
+    $('#preview-counter').textContent = `${String(index + 1).padStart(2, '0')} / 04`;
+    $('#preview-small').textContent = step.label;
+    $('#preview-title').textContent = step.title;
+    $('#preview-desc').textContent = step.desc;
+    $('#preview-visual .preview-illustration').innerHTML = `<span class="preview-illustration-glow"></span><svg class="icon"><use href="${step.icon}" /></svg>`;
+    $$('.preview-pagination span').forEach((dot, j) => dot.classList.toggle('on', j === index));
+    stepButtons.forEach((btn, j) => {
+      const selected = j === index;
+      btn.classList.toggle('active', selected);
+      btn.setAttribute('aria-selected', String(selected));
+      btn.tabIndex = selected ? 0 : -1;
+    });
+    stepPanel?.setAttribute('aria-labelledby', `tab-step-${index}`);
+    if (focus) stepButtons[index].focus();
+  };
+  stepButtons.forEach((button, i) => {
+    button.addEventListener('click', () => showStep(i));
+    button.addEventListener('keydown', e => {
+      let next = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = (i + 1) % steps.length;
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = (i + steps.length - 1) % steps.length;
+      if (e.key === 'Home') next = 0;
+      if (e.key === 'End') next = steps.length - 1;
+      if (next !== null) { e.preventDefault(); showStep(next, true); }
+    });
+  });
+
+  const zoneContent = {
+    campus: ['Zone universitaire', 'Inviter des donneurs près de leur lieu d’études.'],
+    entreprise: ['Zone d’activité', 'Proposer une collecte accessible depuis le lieu de travail.'],
+    quartier: ['Zone résidentielle', 'Mobiliser des volontaires au plus près de leur quartier.']
+  };
+  $$('.map-pin').forEach(button => button.addEventListener('click', () => {
+    const content = zoneContent[button.dataset.zone];
+    if (!content) return;
+    $$('.map-pin').forEach(btn => {
+      const selected = btn === button;
+      btn.classList.toggle('active', selected);
+      btn.setAttribute('aria-pressed', String(selected));
+    });
+    $('#zone-title').textContent = content[0];
+    $('#zone-desc').textContent = content[1];
+    $('.map-canvas').dataset.zone = button.dataset.zone;
+  }));
+
+  // Interactive marketing scenario: no real predictions, no SMS is sent.
+  const demoZones = {
+    universitaire: {
+      title: 'Zone universitaire',
+      desc: 'Une campagne accessible depuis le lieu d’études.',
+      smsZone: 'votre zone universitaire'
+    },
+    entreprise: {
+      title: 'Zone d’activité',
+      desc: 'Une campagne proche du lieu de travail.',
+      smsZone: 'votre zone de travail'
+    },
+    quartier: {
+      title: 'Quartier résidentiel',
+      desc: 'Une campagne pensée pour votre quartier.',
+      smsZone: 'votre quartier'
+    }
+  };
+  let chosenBlood = 'O−';
+  let chosenZone = 'universitaire';
+  const updateDemo = () => {
+    const zone = demoZones[chosenZone];
+    $('#demo-group').textContent = chosenBlood;
+    $('#demo-target').textContent = zone.title;
+    $('#demo-zone-desc').textContent = zone.desc;
+    $('#demo-sms').textContent = `Bonjour, une collecte recherche des donneurs ${chosenBlood} près de ${zone.smsZone}. Un point de collecte vous sera indiqué si vous souhaitez participer.`;
+  };
+  $$('.scenario-option').forEach(button => button.addEventListener('click', () => {
+    chosenBlood = button.dataset.blood;
+    $$('.scenario-option').forEach(btn => {
+      const active = btn === button;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    updateDemo();
+  }));
+  $$('.scenario-zone').forEach(button => button.addEventListener('click', () => {
+    chosenZone = button.dataset.demoZone;
+    $$('.scenario-zone').forEach(btn => {
+      const active = btn === button;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    updateDemo();
+  }));
+
+  // Set once from known project owner contact; replace in index.html for another address.
+  $('#year').textContent = String(new Date().getFullYear());
+})();
+
+</script>
+</body>
+</html>
